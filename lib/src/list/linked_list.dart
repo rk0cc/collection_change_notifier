@@ -2,7 +2,8 @@ part of 'list.dart';
 
 /// Implemented [ChangeNotifier] features in [LinkedList].
 class LinkedListChangeNotifier<E extends LinkedListEntry<E>>
-    extends LinkedList<E> with ChangeNotifier, CollectionChangeNotifierMixin {
+    extends LinkedList<E>
+    with ChangeNotifier, CollectionChangeNotifierMixin<E> {
   /// Construct a new [LinkedList] with [ChangeNotifier] features.
   LinkedListChangeNotifier() : super();
 
@@ -40,4 +41,7 @@ class LinkedListChangeNotifier<E extends LinkedListEntry<E>>
     super.clear();
     notifyListeners();
   }
+
+  @override
+  Iterable<E> get iterableForm => List.from(this);
 }

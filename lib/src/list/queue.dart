@@ -1,7 +1,7 @@
 part of 'list.dart';
 
 mixin _QueueChangeNotifierMixin<E>
-    on Queue<E>, ChangeNotifier, CollectionChangeNotifierMixin {
+    on Queue<E>, ChangeNotifier, CollectionChangeNotifierMixin<E> {
   @override
   void add(value) {
     super.add(value);
@@ -66,10 +66,13 @@ mixin _QueueChangeNotifierMixin<E>
     super.clear();
     notifyListeners();
   }
+
+  @override
+  Iterable<E> get iterableForm => List.from(this);
 }
 
 abstract class QueueChangeNotifier<E>
-    with ChangeNotifier, CollectionChangeNotifierMixin
+    with ChangeNotifier, CollectionChangeNotifierMixin<E>
     implements Queue<E> {
   QueueChangeNotifier._();
 
@@ -85,7 +88,7 @@ abstract class QueueChangeNotifier<E>
 class ListQueueChangeNotifier<E> extends ListQueue<E>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin,
+        CollectionChangeNotifierMixin<E>,
         _QueueChangeNotifierMixin<E>
     implements QueueChangeNotifier<E> {
   ListQueueChangeNotifier([super.initialCapacity]);
@@ -108,7 +111,7 @@ class ListQueueChangeNotifier<E> extends ListQueue<E>
 class DoubleLinkedQueueChangeNotifier<E> extends DoubleLinkedQueue<E>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin,
+        CollectionChangeNotifierMixin<E>,
         _QueueChangeNotifierMixin<E>
     implements QueueChangeNotifier<E> {
   DoubleLinkedQueueChangeNotifier() : super();

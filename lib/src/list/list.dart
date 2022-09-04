@@ -9,7 +9,7 @@ part 'queue.dart';
 
 /// Implemented [ChangeNotifier] feature into [List].
 class ListChangeNotifier<E> extends ListBase<E>
-    with ChangeNotifier, CollectionChangeNotifierMixin {
+    with ChangeNotifier, CollectionChangeNotifierMixin<E> {
   final List<E> _list;
 
   /// Construct a new [ListChangeNotifier] with empty.
@@ -165,4 +165,7 @@ class ListChangeNotifier<E> extends ListBase<E>
     _list.setRange(start, end, iterable, skipCount);
     notifyListeners();
   }
+
+  @override
+  Iterable<E> get iterableForm => List.from(_list);
 }

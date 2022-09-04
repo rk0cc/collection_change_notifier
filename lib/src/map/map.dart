@@ -9,7 +9,11 @@ part 'hash_map.dart';
 part 'linked_hash_map.dart';
 part 'splay_tree_map.dart';
 
-mixin _MapChangeNotifierMixin<K, V> on Map<K, V>, ChangeNotifier {
+mixin _MapChangeNotifierMixin<K, V>
+    on
+        Map<K, V>,
+        ChangeNotifier,
+        CollectionChangeNotifierMixin<MapEntry<K, V>> {
   @protected
   Map<K, V> get _map;
 
@@ -87,10 +91,13 @@ mixin _MapChangeNotifierMixin<K, V> on Map<K, V>, ChangeNotifier {
     _map.updateAll(update);
     notifyListeners();
   }
+
+  @override
+  Iterable<MapEntry<K, V>> get iterableForm => _map.entries;
 }
 
 abstract class MapChangeNotifier<K, V>
-    with ChangeNotifier, CollectionChangeNotifierMixin
+    with ChangeNotifier, CollectionChangeNotifierMixin<MapEntry<K, V>>
     implements Map<K, V> {
   MapChangeNotifier._();
 
