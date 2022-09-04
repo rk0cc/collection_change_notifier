@@ -1,8 +1,4 @@
-import 'dart:collection';
-
-import 'package:flutter/widgets.dart';
-
-import '../abstract.dart';
+part of 'list.dart';
 
 /// Implemented [ChangeNotifier] features in [LinkedList].
 class LinkedListChangeNotifier<E extends LinkedListEntry<E>>

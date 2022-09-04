@@ -1,8 +1,11 @@
 import 'dart:collection';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart' show ChangeNotifier;
 
 import '../abstract.dart';
+
+part 'linked_list.dart';
+part 'queue.dart';
 
 /// Implemented [ChangeNotifier] feature into [List].
 class ListChangeNotifier<E> extends ListBase<E>

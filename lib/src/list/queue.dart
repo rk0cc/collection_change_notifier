@@ -1,8 +1,4 @@
-import 'dart:collection';
-
-import 'package:flutter/widgets.dart';
-
-import '../abstract.dart';
+part of 'list.dart';
 
 mixin _QueueChangeNotifierMixin<E>
     on Queue<E>, ChangeNotifier, CollectionChangeNotifierMixin {
@@ -77,13 +73,13 @@ abstract class QueueChangeNotifier<E>
     implements Queue<E> {
   QueueChangeNotifier._();
 
-  factory QueueChangeNotifier() = ListQueueChangeNotifier;
+  factory QueueChangeNotifier() = ListQueueChangeNotifier<E>;
 
   factory QueueChangeNotifier.from(Iterable elements) =
-      ListQueueChangeNotifier.from;
+      ListQueueChangeNotifier<E>.from;
 
   factory QueueChangeNotifier.of(Iterable<E> elements) =
-      ListQueueChangeNotifier.of;
+      ListQueueChangeNotifier<E>.of;
 }
 
 class ListQueueChangeNotifier<E> extends ListQueue<E>
