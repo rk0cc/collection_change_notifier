@@ -5,7 +5,9 @@ import 'package:meta/meta.dart';
 
 import '../abstract.dart';
 
+part 'hash_set.dart';
 part 'linked_hash_set.dart';
+part 'splay_tree_set.dart';
 
 mixin _SetChangeNotifierMixin<E>
     on Set<E>, ChangeNotifier, CollectionChangeNotifierMixin<E> {
@@ -91,4 +93,16 @@ mixin _SetChangeNotifierMixin<E>
 
 abstract class SetChangeNotifier<E>
     with ChangeNotifier, CollectionChangeNotifierMixin<E>
-    implements Set<E> {}
+    implements Set<E> {
+  SetChangeNotifier._();
+
+  factory SetChangeNotifier() = LinkedHashSetChangeNotifier<E>;
+
+  factory SetChangeNotifier.from(Iterable elements) =
+      LinkedHashSetChangeNotifier<E>.from;
+
+  factory SetChangeNotifier.identify() = LinkedHashSetChangeNotifier.identify;
+
+  factory SetChangeNotifier.of(Iterable<E> elements) =
+      LinkedHashSetChangeNotifier.of;
+}
