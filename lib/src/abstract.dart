@@ -29,4 +29,18 @@ mixin CollectionChangeNotifierMixin<I, IDX, T> on ChangeNotifier {
   /// [MapChangeNotifier] will be returned an [Iterable] of [MapEntry] which
   /// repersent a key-value pair.
   Iterable<I> get iterableForm;
+
+  /// Modify [T]'s properties from [index] inside of
+  /// [CollectionChangeNotifierMixin]. After [update] process, it called
+  /// [notifyListeners].
+  void modify(IDX index, void Function(T item) update);
+}
+
+mixin IterableCollectionChangeNotifieMixin<I>
+    on CollectionChangeNotifierMixin<I, int, I>, Iterable<I> {
+  @override
+  void modify(int index, void Function(I item) update) {
+    update(this.elementAt(index));
+    notifyListeners();
+  }
 }

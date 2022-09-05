@@ -4,6 +4,7 @@ class SplayTreeSetChangeNotifier<E> extends SetBase<E>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<E, int, E>,
+        IterableCollectionChangeNotifieMixin<E>,
         _SetChangeNotifierMixin<E>
     implements SetChangeNotifier<E>, SplayTreeSet<E> {
   final SplayTreeSet<E> _splayTreeSet;

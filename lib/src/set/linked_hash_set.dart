@@ -4,6 +4,7 @@ class LinkedHashSetChangeNotifier<E> extends SetBase<E>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<E, int, E>,
+        IterableCollectionChangeNotifieMixin<E>,
         _SetChangeNotifierMixin<E>
     implements SetChangeNotifier<E>, LinkedHashSet<E> {
   final LinkedHashSet<E> _linkedHashSet;

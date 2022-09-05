@@ -100,6 +100,7 @@ class ListQueueChangeNotifier<E> extends ListQueue<E>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<E, int, E>,
+        IterableCollectionChangeNotifieMixin<E>,
         _QueueChangeNotifierMixin<E>
     implements QueueChangeNotifier<E> {
   /// Create new [ListQueueChangeNotifier] with given [initialCapacity] for
@@ -131,6 +132,7 @@ class DoubleLinkedQueueChangeNotifier<E> extends DoubleLinkedQueue<E>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<E, int, E>,
+        IterableCollectionChangeNotifieMixin<E>,
         _QueueChangeNotifierMixin<E>
     implements QueueChangeNotifier<E> {
   DoubleLinkedQueueChangeNotifier() : super();

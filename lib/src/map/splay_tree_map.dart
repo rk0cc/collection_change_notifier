@@ -3,7 +3,7 @@ part of 'map.dart';
 class SplayTreeMapChangeNotifier<K, V> extends MapBase<K, V>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin<MapEntry<K, V>, K, V>,
+        CollectionChangeNotifierMixin<MapEntry<K, V>, K, Object?>,
         _MapChangeNotifierMixin<K, V>
     implements MapChangeNotifier<K, V>, SplayTreeMap<K, V> {
   final SplayTreeMap<K, V> _splayTreeMap;

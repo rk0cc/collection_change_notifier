@@ -13,7 +13,7 @@ mixin _MapChangeNotifierMixin<K, V>
     on
         Map<K, V>,
         ChangeNotifier,
-        CollectionChangeNotifierMixin<MapEntry<K, V>, K, V> {
+        CollectionChangeNotifierMixin<MapEntry<K, V>, K, Object?> {
   @protected
   Map<K, V> get _map;
 
@@ -94,10 +94,18 @@ mixin _MapChangeNotifierMixin<K, V>
 
   @override
   Iterable<MapEntry<K, V>> get iterableForm => _map.entries;
+
+  @override
+  void modify(K index, void Function(Object? item) update) {
+    update(this[index]);
+    notifyListeners();
+  }
 }
 
 abstract class MapChangeNotifier<K, V>
-    with ChangeNotifier, CollectionChangeNotifierMixin<MapEntry<K, V>, K, V>
+    with
+        ChangeNotifier,
+        CollectionChangeNotifierMixin<MapEntry<K, V>, K, Object?>
     implements Map<K, V> {
   MapChangeNotifier._();
 
@@ -122,4 +130,12 @@ abstract class MapChangeNotifier<K, V>
 
   factory MapChangeNotifier.of(Map<K, V> other) =
       LinkedHashMapChangeNotifier<K, V>.of;
+
+  /// Modify an item at [index] and call [notifyListeners] when [update].
+  ///
+  /// Since either nullable [V] or unassigned [index] causing return
+  /// `null`, the given item is nullable-[Object] instead of [V] to meet
+  /// sound null safety.
+  @override
+  void modify(K index, void Function(Object? item) update);
 }

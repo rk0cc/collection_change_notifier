@@ -4,6 +4,7 @@ class HashSetChangeNotifier<E> extends SetBase<E>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<E, int, E>,
+        IterableCollectionChangeNotifieMixin<E>,
         _SetChangeNotifierMixin<E>
     implements SetChangeNotifier<E>, HashSet<E> {
   final HashSet<E> _hashSet;
