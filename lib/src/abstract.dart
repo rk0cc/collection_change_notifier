@@ -36,6 +36,8 @@ mixin CollectionChangeNotifierMixin<I, IDX, T> on ChangeNotifier {
   void modify(IDX index, void Function(T item) update);
 }
 
+/// An mixin handle [Iterable] based [CollectionChangeNotifierMixin] which
+/// [I] is [Iterable] elements type.
 mixin IterableCollectionChangeNotifieMixin<I>
     on CollectionChangeNotifierMixin<I, int, I>, Iterable<I> {
   @override
