@@ -10,7 +10,7 @@ part 'linked_hash_set.dart';
 part 'splay_tree_set.dart';
 
 mixin _SetChangeNotifierMixin<E>
-    on Set<E>, ChangeNotifier, CollectionChangeNotifierMixin<E> {
+    on Set<E>, ChangeNotifier, CollectionChangeNotifierMixin<E, int, E> {
   @protected
   Set<E> get _set;
 
@@ -92,7 +92,7 @@ mixin _SetChangeNotifierMixin<E>
 }
 
 abstract class SetChangeNotifier<E>
-    with ChangeNotifier, CollectionChangeNotifierMixin<E>
+    with ChangeNotifier, CollectionChangeNotifierMixin<E, int, E>
     implements Set<E> {
   SetChangeNotifier._();
 

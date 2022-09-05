@@ -1,16 +1,20 @@
 part of 'list.dart';
 
 mixin _QueueChangeNotifierMixin<E>
-    on Queue<E>, ChangeNotifier, CollectionChangeNotifierMixin<E> {
+    on Queue<E>, ChangeNotifier, CollectionChangeNotifierMixin<E, int, E> {
   @override
   void add(value) {
     super.add(value);
     notifyListeners();
   }
 
+  void _slientAddAll(Iterable<E> iterable) {
+    super.addAll(iterable);
+  }
+
   @override
   void addAll(Iterable<E> iterable) {
-    super.addAll(iterable);
+    _slientAddAll(iterable);
     notifyListeners();
   }
 
@@ -71,28 +75,42 @@ mixin _QueueChangeNotifierMixin<E>
   Iterable<E> get iterableForm => List.from(this);
 }
 
+/// Added [ChangeNotifier] implementation in [Queue].
 abstract class QueueChangeNotifier<E>
-    with ChangeNotifier, CollectionChangeNotifierMixin<E>
+    with ChangeNotifier, CollectionChangeNotifierMixin<E, int, E>
     implements Queue<E> {
+  // ignore: unused_element
   QueueChangeNotifier._();
 
+  /// Create a [Queue] with [ChangeNotifier] features.
   factory QueueChangeNotifier() = ListQueueChangeNotifier<E>;
 
+  /// Create a new [Queue] that contains all [elements].
   factory QueueChangeNotifier.from(Iterable elements) =
       ListQueueChangeNotifier<E>.from;
 
+  /// Create [Queue] from [elements].
   factory QueueChangeNotifier.of(Iterable<E> elements) =
       ListQueueChangeNotifier<E>.of;
 }
 
+/// List based [QueueChangeNotifier] that provides feature of [ListQueue]
+/// with [ChangeNotifier] integration.
 class ListQueueChangeNotifier<E> extends ListQueue<E>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin<E>,
+        CollectionChangeNotifierMixin<E, int, E>,
         _QueueChangeNotifierMixin<E>
     implements QueueChangeNotifier<E> {
+  /// Create new [ListQueueChangeNotifier] with given [initialCapacity] for
+  /// prepare at leasst elements in this queue.
   ListQueueChangeNotifier([super.initialCapacity]);
 
+  /// Create [ListQueueChangeNotifier] contains all [elements].
+  ///
+  /// It just call [ListQueue.from] with [elements], then call
+  /// [ListQueueChangeNotifier.new] with given [ListQueue.length] as initial
+  /// capacity and assign [elements].
   factory ListQueueChangeNotifier.from(Iterable elements) {
     ListQueue<E> lq = ListQueue.from(elements);
     ListQueueChangeNotifier<E> lqcn = ListQueueChangeNotifier(lq.length);
@@ -104,14 +122,15 @@ class ListQueueChangeNotifier<E> extends ListQueue<E>
     return lqcn;
   }
 
+  /// Create new
   factory ListQueueChangeNotifier.of(Iterable<E> elements) =>
-      ListQueueChangeNotifier()..addAll(elements);
+      ListQueueChangeNotifier().._slientAddAll(elements);
 }
 
 class DoubleLinkedQueueChangeNotifier<E> extends DoubleLinkedQueue<E>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin<E>,
+        CollectionChangeNotifierMixin<E, int, E>,
         _QueueChangeNotifierMixin<E>
     implements QueueChangeNotifier<E> {
   DoubleLinkedQueueChangeNotifier() : super();
@@ -126,5 +145,5 @@ class DoubleLinkedQueueChangeNotifier<E> extends DoubleLinkedQueue<E>
   }
 
   factory DoubleLinkedQueueChangeNotifier.of(Iterable<E> elements) =>
-      DoubleLinkedQueueChangeNotifier()..addAll(elements);
+      DoubleLinkedQueueChangeNotifier().._slientAddAll(elements);
 }

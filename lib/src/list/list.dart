@@ -9,7 +9,7 @@ part 'queue.dart';
 
 /// Implemented [ChangeNotifier] feature into [List].
 class ListChangeNotifier<E> extends ListBase<E>
-    with ChangeNotifier, CollectionChangeNotifierMixin<E> {
+    with ChangeNotifier, CollectionChangeNotifierMixin<E, int, E> {
   final List<E> _list;
 
   /// Construct a new [ListChangeNotifier] with empty.

@@ -3,7 +3,7 @@ part of 'set.dart';
 class SplayTreeSetChangeNotifier<E> extends SetBase<E>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin<E>,
+        CollectionChangeNotifierMixin<E, int, E>,
         _SetChangeNotifierMixin<E>
     implements SetChangeNotifier<E>, SplayTreeSet<E> {
   final SplayTreeSet<E> _splayTreeSet;

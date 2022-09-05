@@ -3,7 +3,7 @@ part of 'set.dart';
 class HashSetChangeNotifier<E> extends SetBase<E>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin<E>,
+        CollectionChangeNotifierMixin<E, int, E>,
         _SetChangeNotifierMixin<E>
     implements SetChangeNotifier<E>, HashSet<E> {
   final HashSet<E> _hashSet;

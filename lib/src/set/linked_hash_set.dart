@@ -3,7 +3,7 @@ part of 'set.dart';
 class LinkedHashSetChangeNotifier<E> extends SetBase<E>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin<E>,
+        CollectionChangeNotifierMixin<E, int, E>,
         _SetChangeNotifierMixin<E>
     implements SetChangeNotifier<E>, LinkedHashSet<E> {
   final LinkedHashSet<E> _linkedHashSet;

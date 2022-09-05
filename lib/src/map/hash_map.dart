@@ -3,7 +3,7 @@ part of 'map.dart';
 class HashMapChangeNotifier<K, V> extends MapBase<K, V>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin<MapEntry<K, V>>,
+        CollectionChangeNotifierMixin<MapEntry<K, V>, K, V>,
         _MapChangeNotifierMixin<K, V>
     implements MapChangeNotifier<K, V>, HashMap<K, V> {
   final HashMap<K, V> _hashMap;

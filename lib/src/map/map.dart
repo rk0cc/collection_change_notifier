@@ -13,7 +13,7 @@ mixin _MapChangeNotifierMixin<K, V>
     on
         Map<K, V>,
         ChangeNotifier,
-        CollectionChangeNotifierMixin<MapEntry<K, V>> {
+        CollectionChangeNotifierMixin<MapEntry<K, V>, K, V> {
   @protected
   Map<K, V> get _map;
 
@@ -97,7 +97,7 @@ mixin _MapChangeNotifierMixin<K, V>
 }
 
 abstract class MapChangeNotifier<K, V>
-    with ChangeNotifier, CollectionChangeNotifierMixin<MapEntry<K, V>>
+    with ChangeNotifier, CollectionChangeNotifierMixin<MapEntry<K, V>, K, V>
     implements Map<K, V> {
   MapChangeNotifier._();
 
