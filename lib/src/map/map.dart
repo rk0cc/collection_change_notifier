@@ -15,7 +15,7 @@ mixin _MapChangeNotifierMixin<K, V>
     on
         Map<K, V>,
         ChangeNotifier,
-        CollectionChangeNotifierMixin<MapEntry<K, V>, K, Object?> {
+        CollectionChangeNotifierMixin<MapEntry<K, V>, K, V?> {
   /// The map of the implemented object.
   ///
   /// Please apply it as getter for getting corresponded [Map] variable.
@@ -101,7 +101,7 @@ mixin _MapChangeNotifierMixin<K, V>
   Iterable<MapEntry<K, V>> get iterableForm => _map.entries;
 
   @override
-  void modify(K index, void Function(Object? item) update) {
+  void modify(K index, void Function(V? item) update) {
     update(this[index]);
     notifyListeners();
   }
@@ -109,9 +109,7 @@ mixin _MapChangeNotifierMixin<K, V>
 
 /// A [Map] that implemented with [ChangeNotifier] features.
 abstract class MapChangeNotifier<K, V>
-    with
-        ChangeNotifier,
-        CollectionChangeNotifierMixin<MapEntry<K, V>, K, Object?>
+    with ChangeNotifier, CollectionChangeNotifierMixin<MapEntry<K, V>, K, V?>
     implements Map<K, V> {
   // ignore: unused_element
   MapChangeNotifier._();
@@ -152,9 +150,8 @@ abstract class MapChangeNotifier<K, V>
 
   /// Modify an item at [index] and call [notifyListeners] when [update].
   ///
-  /// Since either nullable [V] or unassigned [index] causing return
-  /// `null`, the given item is nullable-[Object] instead of [V] to meet
-  /// sound null safety.
+  /// If either no [index] assigned or assigned as `null`, the item given from
+  /// [update] will be returned `null`.
   @override
-  void modify(K index, void Function(Object? item) update);
+  void modify(K index, void Function(V? item) update);
 }

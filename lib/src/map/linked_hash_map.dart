@@ -4,7 +4,7 @@ part of 'map.dart';
 class LinkedHashMapChangeNotifier<K, V> extends MapBase<K, V>
     with
         ChangeNotifier,
-        CollectionChangeNotifierMixin<MapEntry<K, V>, K, Object?>,
+        CollectionChangeNotifierMixin<MapEntry<K, V>, K, V?>,
         _MapChangeNotifierMixin<K, V>
     implements MapChangeNotifier<K, V>, LinkedHashMap<K, V> {
   final LinkedHashMap<K, V> _linkedHashMap;
