@@ -57,6 +57,17 @@ lcnis[0].state = 2;
 lcnis.modify(0, (item) {
     item.state = 2;
 });
+
+// For map:
+final MapChangeNotifier<String, IntState> mscnis = MapChangeNotifier()..["one"] = IntState(1);
+
+mscnis.modify("one", (item) {
+    // Null check required to ensure it is assigned (when value type is non-nullable)
+    if (item != null) {
+        item.state = 2;
+    }
+    // item!.state = 2; // (Not recommeded which make more complicated for error hadling)
+})
 ```
 
 ## License
