@@ -34,6 +34,31 @@ dependencies:
         ref: (Commit hash or tags name)
 ```
 
+## Usage
+
+Mostly it integrated with `notifyListener` already when editing items in the collections unless changing state of element directly
+which required to uses `modify` to notify update:
+
+```dart
+class IntState {
+    int state;
+
+    IntState(this.state);
+}
+
+final ListChangeNotifier<IntState> lcnis = ListChangeNotifier()..add(IntState(1));
+
+// Attach lcnis to ChangeNotifierProvider.value
+
+// Do not change element state directly, this action will not trigger Flutter to rebuild context.
+lcnis[0].state = 2;
+
+// Call modify if want to trigger Flutter rebuild when element state changed via `modify`:
+lcnis.modify(0, (item) {
+    item.state = 2;
+});
+```
+
 ## License
 
 BSD-3
