@@ -23,8 +23,8 @@ mixin CollectionChangeNotifierMixin<I, IDX, T> on ChangeNotifier {
 
   /// Return this collection into [Iterable] form.
   ///
-  /// For [ListChangeNotifier] and [SetChangeNotifier], it just returned as-it
-  /// but dropped [notifyListeners] when collection items changed.
+  /// For [ListChangeNotifier] and [SetChangeNotifier], it just returned a new
+  /// [Iterable] contains same elements.
   ///
   /// [MapChangeNotifier] will be returned an [Iterable] of [MapEntry] which
   /// repersent a key-value pair.

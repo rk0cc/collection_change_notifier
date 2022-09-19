@@ -1,5 +1,6 @@
 part of 'map.dart';
 
+/// A [LinkedHashMap] based implementation of [MapChangeNotifier].
 class LinkedHashMapChangeNotifier<K, V> extends MapBase<K, V>
     with
         ChangeNotifier,

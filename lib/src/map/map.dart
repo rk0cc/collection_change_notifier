@@ -9,11 +9,16 @@ part 'hash_map.dart';
 part 'linked_hash_map.dart';
 part 'splay_tree_map.dart';
 
+/// A mixin to standarize [Map] features with [ChangeNotifier] when state
+/// changed.
 mixin _MapChangeNotifierMixin<K, V>
     on
         Map<K, V>,
         ChangeNotifier,
         CollectionChangeNotifierMixin<MapEntry<K, V>, K, Object?> {
+  /// The map of the implemented object.
+  ///
+  /// Please apply it as getter for getting corresponded [Map] variable.
   @protected
   Map<K, V> get _map;
 
@@ -102,32 +107,46 @@ mixin _MapChangeNotifierMixin<K, V>
   }
 }
 
+/// A [Map] that implemented with [ChangeNotifier] features.
 abstract class MapChangeNotifier<K, V>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<MapEntry<K, V>, K, Object?>
     implements Map<K, V> {
+  // ignore: unused_element
   MapChangeNotifier._();
 
+  /// Get a default preference of [LinkedHashMapChangeNotifier.new].
   factory MapChangeNotifier() = LinkedHashMapChangeNotifier<K, V>;
 
+  /// Construct [MapChangeNotifier] with [other] given.
   factory MapChangeNotifier.from(Map<K, V> other) =
       LinkedHashMapChangeNotifier<K, V>.from;
 
+  /// Create new [MapChangeNotifier]
   factory MapChangeNotifier.fromEntries(Iterable<MapEntry<K, V>> entries) =
       LinkedHashMapChangeNotifier<K, V>.fromEntries;
 
+  /// Create new [MapChangeNotifier] with unspecified element type of
+  /// [iterable] and specify [key] and [value] function for extracting
+  /// as k-v pair.
   factory MapChangeNotifier.fromIterable(Iterable iterable,
           {K Function(dynamic)? key, V Function(dynamic)? value}) =
       LinkedHashMapChangeNotifier<K, V>.fromIterable;
 
+  /// Create new [MapChangeNotifier] with given 2 [Iterable] of [keys] and
+  /// [values].
+  ///
+  /// Both [keys] and [values]'s [Iterable.length] should be the same.
   factory MapChangeNotifier.fromIterables(
           Iterable<K> keys, Iterable<V> values) =
       LinkedHashMapChangeNotifier<K, V>.fromIterables;
 
+  /// Create [MapChangeNotifier] with [identical] condition.
   factory MapChangeNotifier.identity() =
       LinkedHashMapChangeNotifier<K, V>.identity;
 
+  /// Create [MapChangeNotifier] from [other] map.
   factory MapChangeNotifier.of(Map<K, V> other) =
       LinkedHashMapChangeNotifier<K, V>.of;
 

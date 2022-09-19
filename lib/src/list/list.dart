@@ -1,3 +1,10 @@
+/*
+  LinkedList and Queue have no relationship with List in Dart. Therefore, no
+  standarized list change notifier mixin implemented.
+
+  Grouping them into the list is for easier manage.
+*/
+
 import 'dart:collection';
 
 import 'package:flutter/widgets.dart' show ChangeNotifier;

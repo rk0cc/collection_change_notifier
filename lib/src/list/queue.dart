@@ -123,11 +123,12 @@ class ListQueueChangeNotifier<E> extends ListQueue<E>
     return lqcn;
   }
 
-  /// Create new
+  /// Create new [ListQueueChangeNotifier] with given [elements].
   factory ListQueueChangeNotifier.of(Iterable<E> elements) =>
       ListQueueChangeNotifier().._slientAddAll(elements);
 }
 
+/// Implemented [QueueChangeNotifier] baased on [DoubleLinkedQueue].
 class DoubleLinkedQueueChangeNotifier<E> extends DoubleLinkedQueue<E>
     with
         ChangeNotifier,
@@ -135,8 +136,11 @@ class DoubleLinkedQueueChangeNotifier<E> extends DoubleLinkedQueue<E>
         IterableCollectionChangeNotifieMixin<E>,
         _QueueChangeNotifierMixin<E>
     implements QueueChangeNotifier<E> {
+  /// Create new [DoubleLinkedQueueChangeNotifier].
   DoubleLinkedQueueChangeNotifier() : super();
 
+  /// Create new [DoubleLinkedQueueChangeNotifier] and add all [elements]
+  /// of [Iterable] into the last of the queue.
   factory DoubleLinkedQueueChangeNotifier.from(Iterable elements) {
     DoubleLinkedQueueChangeNotifier<E> dlq = DoubleLinkedQueueChangeNotifier();
     for (final e in elements) {
@@ -146,6 +150,8 @@ class DoubleLinkedQueueChangeNotifier<E> extends DoubleLinkedQueue<E>
     return dlq;
   }
 
+  /// Create new [DoubleLinkedQueueChangeNotifier] and apply [elements]
+  /// of [Iterable] to the list.
   factory DoubleLinkedQueueChangeNotifier.of(Iterable<E> elements) =>
       DoubleLinkedQueueChangeNotifier().._slientAddAll(elements);
 }

@@ -94,6 +94,7 @@ mixin _SetChangeNotifierMixin<E>
 abstract class SetChangeNotifier<E>
     with ChangeNotifier, CollectionChangeNotifierMixin<E, int, E>
     implements Set<E> {
+  // ignore: unused_element
   SetChangeNotifier._();
 
   factory SetChangeNotifier() = LinkedHashSetChangeNotifier<E>;
