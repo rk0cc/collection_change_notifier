@@ -9,6 +9,8 @@ class LinkedHashMapChangeNotifier<K, V> extends MapBase<K, V>
     implements MapChangeNotifier<K, V>, LinkedHashMap<K, V> {
   final LinkedHashMap<K, V> _linkedHashMap;
 
+  /// Construct a new [LinkedHashMapChangeNotifier] with [equals] condition,
+  /// getting [hashCode] and [isValidKey] options.
   LinkedHashMapChangeNotifier(
       {bool Function(K, K)? equals,
       int Function(K)? hashCode,
@@ -16,6 +18,8 @@ class LinkedHashMapChangeNotifier<K, V> extends MapBase<K, V>
       : _linkedHashMap = LinkedHashMap(
             equals: equals, hashCode: hashCode, isValidKey: isValidKey);
 
+  /// Create new [LinkedHashMapChangeNotifier] that contains all key-value pair
+  /// of [other].
   LinkedHashMapChangeNotifier.from(Map<K, V> other)
       : _linkedHashMap = LinkedHashMap.from(other);
 

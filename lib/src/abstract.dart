@@ -31,7 +31,7 @@ mixin CollectionChangeNotifierMixin<I, IDX, T> on ChangeNotifier {
   Iterable<I> get iterableForm;
 
   /// Modify [T]'s properties from [index] inside of
-  /// [CollectionChangeNotifierMixin]. After [update] process, it called
+  /// [CollectionChangeNotifierMixin]. After [update] proceeded, it called
   /// [notifyListeners].
   void modify(IDX index, void Function(T item) update);
 }
