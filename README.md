@@ -1,5 +1,9 @@
 # Binding Dart collection model to ChangeNotifier in Flutter
 
+<p align="center">
+    <a href="https://pub.dev/packages/collection_change_notifier"><img alt="Pub Version (including pre-releases)" src="https://img.shields.io/pub/v/collection_change_notifier?include_prereleases&style=for-the-badge"/></a>
+</p>
+
 This package implemented Dart's collection object with ChangeNotifier that it updated when collection item changed.
 
 ## Warning: Untested
