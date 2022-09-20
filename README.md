@@ -8,7 +8,7 @@ This package implemented Dart's collection object with ChangeNotifier that it up
 
 ## Warning: Untested
 
-This repositry is newly created without testing. As alpha development stage, it is excepted serval error thrown.
+This repositry is newly created without testing. As development stage, it is excepted serval error thrown.
 
 ## Purpose
 
@@ -22,11 +22,11 @@ It similar how `BindingList` worked in .NET.
 
 #### Edit pubspec.yaml:
 
-* ~~From pub.dev~~ (Available when making pre-release)
+* From pub.dev
 
 ```yaml
 dependencies:
-    collection_change_notifier: 1.0.0
+    collection_change_notifier: 1.0.0-pre.1
 ```
 
 * From Git (For unstable release)
