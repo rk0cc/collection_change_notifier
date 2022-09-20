@@ -1,6 +1,7 @@
 name: collection_change_notifier
 description: Implement change notifier for collection object e.g. List, Set and Map
 version: 1.0.0-pre.1
+repository: https://github.com/rk0cc/collection_change_notifier
 environment:
   sdk: '>=2.18.0 <3.0.0'
   flutter: ">=3.3.0"
