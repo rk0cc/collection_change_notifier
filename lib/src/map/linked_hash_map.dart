@@ -23,21 +23,28 @@ class LinkedHashMapChangeNotifier<K, V> extends MapBase<K, V>
   LinkedHashMapChangeNotifier.from(Map<K, V> other)
       : _linkedHashMap = LinkedHashMap.from(other);
 
+  /// Create new [LinkedHashMapChangeNotifier] with [entries].
   LinkedHashMapChangeNotifier.fromEntries(Iterable<MapEntry<K, V>> entries)
       : _linkedHashMap = LinkedHashMap.fromEntries(entries);
 
+  /// Create new [LinkedHashMapChangeNotifier] from [iterable] which using to
+  /// extract [key] and [value].
   LinkedHashMapChangeNotifier.fromIterable(Iterable iterable,
       {K Function(dynamic element)? key, V Function(dynamic element)? value})
       : _linkedHashMap =
             LinkedHashMap.fromIterable(iterable, key: key, value: value);
 
+  /// Create new [LinkedHashMapChangeNotifier] with [Iterable] of [keys] and
+  /// [values] which both of [Iterable.length] should be the same.
   LinkedHashMapChangeNotifier.fromIterables(
       Iterable<K> keys, Iterable<V> values)
       : _linkedHashMap = LinkedHashMap.fromIterables(keys, values);
 
+  /// Create [LinkedHashMapChangeNotifier] with [identical] condition.
   LinkedHashMapChangeNotifier.identity()
       : _linkedHashMap = LinkedHashMap.identity();
 
+  /// Create new [LinkedHashMapChangeNotifier] that contains [other].
   LinkedHashMapChangeNotifier.of(Map<K, V> other)
       : _linkedHashMap = LinkedHashMap.of(other);
 

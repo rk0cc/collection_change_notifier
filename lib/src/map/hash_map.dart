@@ -1,5 +1,6 @@
 part of 'map.dart';
 
+/// [HashMap] based implementation of [MapChangeNotifier].
 class HashMapChangeNotifier<K, V> extends MapBase<K, V>
     with
         ChangeNotifier,
@@ -8,6 +9,8 @@ class HashMapChangeNotifier<K, V> extends MapBase<K, V>
     implements MapChangeNotifier<K, V>, HashMap<K, V> {
   final HashMap<K, V> _hashMap;
 
+  /// Construct [HashMapChangeNotifier] with specify [equals], [hashCode] and
+  /// [isValidKey].
   HashMapChangeNotifier(
       {bool Function(K, K)? equals,
       int Function(K)? hashCode,
