@@ -90,6 +90,33 @@ class ListChangeNotifier<E> extends ListBase<E>
     notifyListeners();
   }
 
+  /// To [fill] [E] from [start] to [end].
+  ///
+  /// This action will invoke [notifyListeners].
+  @override
+  void fillRange(int start, int end, [E? fill]) {
+    _list.fillRange(start, end, fill);
+    notifyListeners();
+  }
+
+  /// Insert [element] into the [index].
+  ///
+  /// This action will invoke [notifyListeners].
+  @override
+  void insert(int index, E element) {
+    _list.insert(index, element);
+    notifyListeners();
+  }
+
+  /// Insert [iterable] starting from [index].
+  ///
+  /// This action will invoke [notifyListeners].
+  @override
+  void insertAll(int index, Iterable<E> iterable) {
+    _list.insertAll(index, iterable);
+    notifyListeners();
+  }
+
   /// Remove a given [element] in this list and return [bool] that indicate it
   /// was in the list or not.
   ///
