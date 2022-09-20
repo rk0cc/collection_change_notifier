@@ -22,7 +22,7 @@ class LinkedHashMapChangeNotifier<K, V> extends MapBase<K, V>
 
   /// Create new [LinkedHashMapChangeNotifier] that contains all key-value pair
   /// of [other].
-  factory LinkedHashMapChangeNotifier.from(Map<K, V> other) =>
+  factory LinkedHashMapChangeNotifier.from(Map other) =>
       LinkedHashMapChangeNotifier._new(LinkedHashMap.from(other));
 
   /// Create new [LinkedHashMapChangeNotifier] with [entries].

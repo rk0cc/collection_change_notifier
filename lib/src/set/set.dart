@@ -91,19 +91,24 @@ mixin _SetChangeNotifierMixin<E>
   Iterable<E> get iterableForm => toSet();
 }
 
+/// An implementation of [CollectionChangeNotifierMixin] that based on [Set].
 abstract class SetChangeNotifier<E>
     with ChangeNotifier, CollectionChangeNotifierMixin<E, int, E>
     implements Set<E> {
   // ignore: unused_element
   SetChangeNotifier._();
 
+  /// Construct [LinkedHashSetChangeNotifier] with no specification.
   factory SetChangeNotifier() = LinkedHashSetChangeNotifier<E>;
 
+  /// Construct new [SetChangeNotifier] that contains all [elements].
   factory SetChangeNotifier.from(Iterable elements) =
       LinkedHashSetChangeNotifier<E>.from;
 
+  /// Construct new [SetChangeNotifier] with [identical] condition.
   factory SetChangeNotifier.identify() = LinkedHashSetChangeNotifier.identify;
 
+  /// Consturct new [SetChangeNotifier] that contains [elements].
   factory SetChangeNotifier.of(Iterable<E> elements) =
       LinkedHashSetChangeNotifier.of;
 }

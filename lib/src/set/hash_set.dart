@@ -1,5 +1,6 @@
 part of 'set.dart';
 
+/// [HashSet] based [SetChangeNotifier] implementation.
 class HashSetChangeNotifier<E> extends SetBase<E>
     with
         ChangeNotifier,
@@ -11,6 +12,8 @@ class HashSetChangeNotifier<E> extends SetBase<E>
 
   HashSetChangeNotifier._new(this._hashSet);
 
+  /// Construct new [HashSetChangeNotifier] with [equals], [hashCode] and
+  /// [isValidKey] configuration.
   HashSetChangeNotifier(
       {bool Function(E, E)? equals,
       int Function(E)? hashCode,
@@ -18,12 +21,15 @@ class HashSetChangeNotifier<E> extends SetBase<E>
       : _hashSet =
             HashSet(equals: equals, hashCode: hashCode, isValidKey: isValidKey);
 
+  /// Construct new [HashSetChangeNotifier] with [elements].
   factory HashSetChangeNotifier.from(Iterable elements) =>
       HashSetChangeNotifier._new(HashSet.from(elements));
 
+  /// Construct new [HashSetChangeNotifier] using [identical].
   factory HashSetChangeNotifier.identify() =>
       HashSetChangeNotifier._new(HashSet.identity());
 
+  /// Consturct [HashSetChangeNotifier] that contains [elements].
   factory HashSetChangeNotifier.of(Iterable<E> elements) =>
       HashSetChangeNotifier._new(HashSet.of(elements));
 

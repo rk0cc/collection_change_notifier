@@ -118,7 +118,7 @@ abstract class MapChangeNotifier<K, V>
   factory MapChangeNotifier() = LinkedHashMapChangeNotifier<K, V>;
 
   /// Construct [MapChangeNotifier] with [other] given.
-  factory MapChangeNotifier.from(Map<K, V> other) =
+  factory MapChangeNotifier.from(Map other) =
       LinkedHashMapChangeNotifier<K, V>.from;
 
   /// Create new [MapChangeNotifier]
