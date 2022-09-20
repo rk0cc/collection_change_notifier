@@ -9,6 +9,8 @@ class LinkedHashMapChangeNotifier<K, V> extends MapBase<K, V>
     implements MapChangeNotifier<K, V>, LinkedHashMap<K, V> {
   final LinkedHashMap<K, V> _linkedHashMap;
 
+  LinkedHashMapChangeNotifier._new(this._linkedHashMap);
+
   /// Construct a new [LinkedHashMapChangeNotifier] with [equals] condition,
   /// getting [hashCode] and [isValidKey] options.
   LinkedHashMapChangeNotifier(
@@ -20,33 +22,36 @@ class LinkedHashMapChangeNotifier<K, V> extends MapBase<K, V>
 
   /// Create new [LinkedHashMapChangeNotifier] that contains all key-value pair
   /// of [other].
-  LinkedHashMapChangeNotifier.from(Map<K, V> other)
-      : _linkedHashMap = LinkedHashMap.from(other);
+  factory LinkedHashMapChangeNotifier.from(Map<K, V> other) =>
+      LinkedHashMapChangeNotifier._new(LinkedHashMap.from(other));
 
   /// Create new [LinkedHashMapChangeNotifier] with [entries].
-  LinkedHashMapChangeNotifier.fromEntries(Iterable<MapEntry<K, V>> entries)
-      : _linkedHashMap = LinkedHashMap.fromEntries(entries);
+  factory LinkedHashMapChangeNotifier.fromEntries(
+          Iterable<MapEntry<K, V>> entries) =>
+      LinkedHashMapChangeNotifier._new(LinkedHashMap.fromEntries(entries));
 
   /// Create new [LinkedHashMapChangeNotifier] from [iterable] which using to
   /// extract [key] and [value].
-  LinkedHashMapChangeNotifier.fromIterable(Iterable iterable,
-      {K Function(dynamic element)? key, V Function(dynamic element)? value})
-      : _linkedHashMap =
-            LinkedHashMap.fromIterable(iterable, key: key, value: value);
+  factory LinkedHashMapChangeNotifier.fromIterable(Iterable iterable,
+          {K Function(dynamic element)? key,
+          V Function(dynamic element)? value}) =>
+      LinkedHashMapChangeNotifier._new(
+          LinkedHashMap.fromIterable(iterable, key: key, value: value));
 
   /// Create new [LinkedHashMapChangeNotifier] with [Iterable] of [keys] and
   /// [values] which both of [Iterable.length] should be the same.
-  LinkedHashMapChangeNotifier.fromIterables(
-      Iterable<K> keys, Iterable<V> values)
-      : _linkedHashMap = LinkedHashMap.fromIterables(keys, values);
+  factory LinkedHashMapChangeNotifier.fromIterables(
+          Iterable<K> keys, Iterable<V> values) =>
+      LinkedHashMapChangeNotifier._new(
+          LinkedHashMap.fromIterables(keys, values));
 
   /// Create [LinkedHashMapChangeNotifier] with [identical] condition.
-  LinkedHashMapChangeNotifier.identity()
-      : _linkedHashMap = LinkedHashMap.identity();
+  factory LinkedHashMapChangeNotifier.identity() =>
+      LinkedHashMapChangeNotifier._new(LinkedHashMap.identity());
 
   /// Create new [LinkedHashMapChangeNotifier] that contains [other].
-  LinkedHashMapChangeNotifier.of(Map<K, V> other)
-      : _linkedHashMap = LinkedHashMap.of(other);
+  factory LinkedHashMapChangeNotifier.of(Map<K, V> other) =>
+      LinkedHashMapChangeNotifier._new(LinkedHashMap.of(other));
 
   @override
   Map<K, V> get _map => _linkedHashMap;

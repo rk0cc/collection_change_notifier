@@ -9,6 +9,8 @@ class LinkedHashSetChangeNotifier<E> extends SetBase<E>
     implements SetChangeNotifier<E>, LinkedHashSet<E> {
   final LinkedHashSet<E> _linkedHashSet;
 
+  LinkedHashSetChangeNotifier._new(this._linkedHashSet);
+
   LinkedHashSetChangeNotifier(
       {bool Function(E, E)? equals,
       int Function(E)? hashCode,
@@ -16,14 +18,14 @@ class LinkedHashSetChangeNotifier<E> extends SetBase<E>
       : _linkedHashSet = LinkedHashSet(
             equals: equals, hashCode: hashCode, isValidKey: isValidKey);
 
-  LinkedHashSetChangeNotifier.from(Iterable elements)
-      : _linkedHashSet = LinkedHashSet.from(elements);
+  factory LinkedHashSetChangeNotifier.from(Iterable elements) =>
+      LinkedHashSetChangeNotifier._new(LinkedHashSet.from(elements));
 
-  LinkedHashSetChangeNotifier.identify()
-      : _linkedHashSet = LinkedHashSet.identity();
+  factory LinkedHashSetChangeNotifier.identify() =>
+      LinkedHashSetChangeNotifier._new(LinkedHashSet.identity());
 
-  LinkedHashSetChangeNotifier.of(Iterable<E> elements)
-      : _linkedHashSet = LinkedHashSet.of(elements);
+  factory LinkedHashSetChangeNotifier.of(Iterable<E> elements) =>
+      LinkedHashSetChangeNotifier._new(LinkedHashSet.of(elements));
 
   @override
   Set<E> get _set => _linkedHashSet;
