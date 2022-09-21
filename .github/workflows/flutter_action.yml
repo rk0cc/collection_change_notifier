@@ -1,0 +1,38 @@
+name: Flutter package test
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'lib/**.dart'
+      - 'test/**.dart'
+      - '.github/workflows/flutter_action.yml'
+  pull_request:
+    branches:
+      - main
+jobs:
+  widget_test:
+    name: Widget test
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - windows-latest
+          - macos-latest
+          - ubuntu-latest
+        channel:
+          - stable
+          - beta
+          - dev
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Initalize Flutter
+        uses: subosito/flutter-action@v2.7.1
+        with:
+          channel: ${{ matrix.channel }}
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Perform test
+        run: flutter test

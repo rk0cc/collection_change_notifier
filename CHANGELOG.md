@@ -1,3 +1,7 @@
+## 1.0.0
+
+* First stable release
+
 ## 1.0.0-pre.2
 
 * Implement `fillRange`, `insert` and `insertAll` methods in `ListChangeNotifier`

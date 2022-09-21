@@ -5,3 +5,4 @@ test/
 /example/macos/**
 /example/windows/**
 /example/web/**
+.github/
