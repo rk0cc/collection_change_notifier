@@ -23,7 +23,7 @@ jobs:
         channel:
           - stable
           - beta
-          - dev
+          # - dev
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
