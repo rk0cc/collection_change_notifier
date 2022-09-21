@@ -46,16 +46,17 @@ class ExampleAppHome extends StatelessWidget {
                           builder: (context) => const ExampleAppList())),
                   icon: Icon(Icons.list))
             ]),
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
+        body: Center(
+            child: ListView(
+                padding: const EdgeInsets.all(20),
+                shrinkWrap: true,
+                children: <Widget>[
               // Counting items of StringNode which store into the list.
               Text(
                   "Count of items: ${Provider.of<ListChangeNotifier<StringNode>>(context).length}",
                   style: const TextStyle(fontSize: 18),
                   textAlign: TextAlign.center)
-            ]),
+            ])),
         floatingActionButton: FloatingActionButton(
             // Create new StringNode data
             onPressed: () => Navigator.push(context,

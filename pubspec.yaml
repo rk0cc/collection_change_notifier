@@ -12,3 +12,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  provider: ^6.0.3
