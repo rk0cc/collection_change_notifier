@@ -6,6 +6,8 @@
 
 This package implemented Dart's collection object with ChangeNotifier that it updated when collection item changed.
 
+Also, [online demo](https://osp.rk0cc.xyz/collection_change_notifier/) available
+
 ## Purpose
 
 Flutter provides `ChangeNotifier` for handling update when mutable object's property changed and make widget rebuild (`provider` package).
