@@ -58,8 +58,52 @@ ChangeNotifierProvider<MapChangeNotifier<String, NumNode>> get cnp =>
 
 void main() {
   group("Map change notifier test", () {
-    testWidgets("set key", (tester) async {
+    testWidgets("test add", (tester) async {
       await tester.pumpWidget(cnp);
+
+      await tester.tap(find.byType(FloatingActionButton));
+      await tester.pump();
+
+      final unmod = find.text("Map context: 0");
+
+      expect(unmod, findsOneWidget);
+      expect(find.text("Map context: NaN"), findsNothing);
+      expect(unmod.evaluate().length, equals(1));
+    });
+    testWidgets("test modified", (tester) async {
+      await tester.pumpWidget(cnp);
+
+      for (int i = 0; i < 7; i++) {
+        await tester.tap(find.byType(FloatingActionButton));
+        await tester.pump(const Duration(milliseconds: 750));
+      }
+
+      final lt = find.byType(ListTile);
+      await tester.tap(lt.at(math.Random().nextInt(5)));
+      await tester.pump();
+
+      final unmod = find.text("Map context: 0");
+
+      expect(unmod, findsWidgets);
+      expect(find.text("Map context: NaN"), findsOneWidget);
+      expect(unmod.evaluate().length, equals(6));
+    });
+    testWidgets("test deleted", (tester) async {
+      await tester.pumpWidget(cnp);
+
+      for (int i = 0; i < 7; i++) {
+        await tester.tap(find.byType(FloatingActionButton));
+        await tester.pump(const Duration(milliseconds: 750));
+      }
+
+      final lt = find.byType(ListTile);
+      await tester.longPress(lt.at(math.Random().nextInt(7)));
+
+      final unmod = find.text("Map context: 0");
+
+      expect(unmod, findsWidgets);
+      expect(find.text("Map context: NaN"), findsNothing);
+      expect(unmod.evaluate().length, equals(6));
     });
   });
 }
