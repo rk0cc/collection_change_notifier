@@ -38,13 +38,15 @@ class ListControllerPage extends StatelessWidget {
   }
 }
 
+ChangeNotifierProvider<ListChangeNotifier<StringNode>> get cnp =>
+    ChangeNotifierProvider(
+        create: (context) => ListChangeNotifier<StringNode>(),
+        builder: (context, child) => MaterialApp(home: ListControllerPage()));
+
 void main() {
   group("List change notifier test", () {
     testWidgets("test add", (tester) async {
-      await tester.pumpWidget(ChangeNotifierProvider(
-          create: (context) => ListChangeNotifier<StringNode>(),
-          builder: (context, child) =>
-              MaterialApp(home: ListControllerPage())));
+      await tester.pumpWidget(cnp);
 
       await tester.tap(find.byType(FloatingActionButton));
       await tester.pump();
@@ -56,10 +58,7 @@ void main() {
       expect(unmod.evaluate().length, equals(1));
     });
     testWidgets("test modified", (tester) async {
-      await tester.pumpWidget(ChangeNotifierProvider(
-          create: (context) => ListChangeNotifier<StringNode>(),
-          builder: (context, child) =>
-              MaterialApp(home: ListControllerPage())));
+      await tester.pumpWidget(cnp);
 
       for (int i = 0; i < 5; i++) {
         await tester.tap(find.byType(FloatingActionButton));
@@ -77,10 +76,7 @@ void main() {
       expect(unmod.evaluate().length, equals(4));
     });
     testWidgets("test deleted", (tester) async {
-      await tester.pumpWidget(ChangeNotifierProvider(
-          create: (context) => ListChangeNotifier<StringNode>(),
-          builder: (context, child) =>
-              MaterialApp(home: ListControllerPage())));
+      await tester.pumpWidget(cnp);
 
       for (int i = 0; i < 5; i++) {
         await tester.tap(find.byType(FloatingActionButton));

@@ -27,7 +27,7 @@ class MapControllerPage extends StatelessWidget {
 
               return ListTile(
                   leading: Text("Key: ${entry.key}"),
-                  title: Text("List context: ${entry.value.number}"),
+                  title: Text("Map context: ${entry.value.number}"),
                   onTap: () {
                     mcnnn.modify(entry.key, (item) {
                       item!.number = double.nan;
@@ -44,4 +44,14 @@ class MapControllerPage extends StatelessWidget {
   }
 }
 
-void main() {}
+ChangeNotifierProvider<MapChangeNotifier<String, NumNode>> get cnp =>
+    ChangeNotifierProvider(
+        create: (context) => MapChangeNotifier(),
+        builder: (context, child) =>
+            MaterialApp(home: const MapControllerPage()));
+
+void main() {
+  group("Map change notifier test", () {
+    testWidgets("set key", (tester) async {});
+  });
+}
