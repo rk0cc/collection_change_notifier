@@ -38,10 +38,14 @@ class MapControllerPage extends StatelessWidget {
                   });
             }),
         floatingActionButton: FloatingActionButton(onPressed: () {
-          mcnnn.putIfAbsent(
-              String.fromCharCodes(
-                  List.generate(8, (index) => math.Random().nextInt(33) + 89)),
-              () => NumNode(0));
+          while (true) {
+            String mk = String.fromCharCodes(
+                List.generate(8, (index) => math.Random().nextInt(33) + 89));
+            if (!mcnnn.containsKey(mk)) {
+              mcnnn[mk] = NumNode(0);
+              break;
+            }
+          }
         }));
   }
 }
