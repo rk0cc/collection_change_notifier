@@ -38,8 +38,10 @@ class MapControllerPage extends StatelessWidget {
                   });
             }),
         floatingActionButton: FloatingActionButton(onPressed: () {
-          mcnnn[String.fromCharCodes(List.generate(
-              8, (index) => math.Random().nextInt(33) + 89))] = NumNode(0);
+          mcnnn.putIfAbsent(
+              String.fromCharCodes(
+                  List.generate(8, (index) => math.Random().nextInt(33) + 89)),
+              () => NumNode(0));
         }));
   }
 }
@@ -52,6 +54,8 @@ ChangeNotifierProvider<MapChangeNotifier<String, NumNode>> get cnp =>
 
 void main() {
   group("Map change notifier test", () {
-    testWidgets("set key", (tester) async {});
+    testWidgets("set key", (tester) async {
+      await tester.pumpWidget(cnp);
+    });
   });
 }
