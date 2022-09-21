@@ -6,3 +6,5 @@ test/
 /example/windows/**
 /example/web/**
 .github/
+build/
+*.iml
