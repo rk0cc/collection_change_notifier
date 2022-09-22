@@ -72,6 +72,11 @@ mscnis.modify("one", (item) {
 })
 ```
 
+## Limitations
+
+It only implemented based on the class method which there is no ovridden method for extensions (e.g. `sort`).
+Extensions method tend to be invoked multiple time of `notifyListeners` that causing build error throw.
+
 ## License
 
 BSD-3
