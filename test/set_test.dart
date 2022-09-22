@@ -24,6 +24,7 @@ class SetControllerPage extends StatelessWidget {
             itemBuilder: (context, index) => ListTile(
                 title: Text("Set context: ${lcnsn.elementAt(index)}"),
                 onTap: () {
+                  // Make a duplicate one instead of editing value
                   lcnsn.add(lcnsn.elementAt(index));
                 },
                 onLongPress: () {
