@@ -209,6 +209,15 @@ class ListChangeNotifier<E> extends ListBase<E>
     notifyListeners();
   }
 
+  /// Sort elements with given [compare] method which act like [Comparator].
+  ///
+  /// This method will trigger [notifyListeners] after sorted.
+  @override
+  void sort([int Function(E a, E b)? compare]) {
+    _list.sort(compare);
+    notifyListeners();
+  }
+
   @override
   Iterable<E> get iterableForm => List.from(_list);
 

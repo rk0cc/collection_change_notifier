@@ -1,3 +1,7 @@
+## 1.0.0+1
+
+* Implement `sort` for `ListChangeNotifier`
+
 ## 1.0.0
 
 * First stable release
