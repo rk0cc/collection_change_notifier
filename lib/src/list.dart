@@ -4,18 +4,17 @@
 
   Grouping them into the list is for easier manage.
 */
-
 import 'dart:collection';
 
 import 'package:flutter/widgets.dart' show ChangeNotifier;
 
-import '../abstract.dart';
+import 'abstract.dart';
 
 part 'linked_list.dart';
 part 'queue.dart';
 
 /// Implemented [ChangeNotifier] feature into [List].
-class ListChangeNotifier<E> extends ListBase<E>
+final class ListChangeNotifier<E> extends ListBase<E>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<E, int, E>,
@@ -206,6 +205,15 @@ class ListChangeNotifier<E> extends ListBase<E>
   @override
   void setRange(int start, int end, Iterable<E> iterable, [int skipCount = 0]) {
     _list.setRange(start, end, iterable, skipCount);
+    notifyListeners();
+  }
+
+  /// Sort elements with given [compare] method which act like [Comparator].
+  ///
+  /// This method will trigger [notifyListeners] after sorted.
+  @override
+  void sort([int Function(E a, E b)? compare]) {
+    _list.sort(compare);
     notifyListeners();
   }
 

@@ -54,7 +54,7 @@ ChangeNotifierProvider<MapChangeNotifier<String, NumNode>> get cnp =>
     ChangeNotifierProvider(
         create: (context) => MapChangeNotifier(),
         builder: (context, child) =>
-            MaterialApp(home: const MapControllerPage()));
+            const MaterialApp(home: MapControllerPage()));
 
 void main() {
   group("Map change notifier test", () {

@@ -1,14 +1,14 @@
 part of 'list.dart';
 
 /// Implemented [ChangeNotifier] features in [LinkedList].
-class LinkedListChangeNotifier<E extends LinkedListEntry<E>>
+base class LinkedListChangeNotifier<E extends LinkedListEntry<E>>
     extends LinkedList<E>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<E, int, E>,
         IterableCollectionChangeNotifieMixin<E> {
   /// Construct a new [LinkedList] with [ChangeNotifier] features.
-  LinkedListChangeNotifier() : super();
+  LinkedListChangeNotifier();
 
   @override
   void add(E entry) {

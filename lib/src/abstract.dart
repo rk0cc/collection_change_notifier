@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
+import 'package:meta/meta.dart';
 
-import 'list/list.dart' show ListChangeNotifier;
-import 'map/map.dart' show MapChangeNotifier;
-import 'set/set.dart' show SetChangeNotifier;
+import 'list.dart' show ListChangeNotifier;
+import 'map.dart' show MapChangeNotifier;
+import 'set.dart' show SetChangeNotifier;
 
 /// Totally basic mixin that define implemented collection is binded with
 /// [ChangeNotifier].
@@ -10,7 +11,7 @@ import 'set/set.dart' show SetChangeNotifier;
 /// Since it shared with [List], [Set], [Map] and other implemented from
 /// `dart:collection`, it only provided shared limited properties which both of
 /// them exist.
-mixin CollectionChangeNotifierMixin<I, IDX, T> on ChangeNotifier {
+mixin CollectionChangeNotifierMixin<I, IDX, E> on ChangeNotifier {
   /// Get how many items contains in this collection or key-value pair for
   /// [Map].
   int get length;
@@ -30,19 +31,20 @@ mixin CollectionChangeNotifierMixin<I, IDX, T> on ChangeNotifier {
   /// repersent a key-value pair.
   Iterable<I> get iterableForm;
 
-  /// Modify [T]'s properties from [index] inside of
+  /// Modify [E]'s properties from [index] inside of
   /// [CollectionChangeNotifierMixin]. After [update] proceeded, it called
   /// [notifyListeners].
-  void modify(IDX index, void Function(T item) update);
+  void modify(IDX index, void Function(E item) update);
 }
 
 /// An mixin handle [Iterable] based [CollectionChangeNotifierMixin] which
-/// [I] is [Iterable] elements type.
-mixin IterableCollectionChangeNotifieMixin<I>
-    on CollectionChangeNotifierMixin<I, int, I>, Iterable<I> {
+/// [E] is [Iterable] elements type.
+@internal
+mixin IterableCollectionChangeNotifieMixin<E>
+    on CollectionChangeNotifierMixin<E, int, E>, Iterable<E> {
   @override
-  void modify(int index, void Function(I item) update) {
-    update(this.elementAt(index));
+  void modify(int index, void Function(E item) update) {
+    update(elementAt(index));
     notifyListeners();
   }
 }

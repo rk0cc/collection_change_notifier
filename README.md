@@ -24,7 +24,7 @@ It similar how `BindingList` worked in .NET.
 
 ```yaml
 dependencies:
-    collection_change_notifier: ^1.0.0 # Or ''>=1.0.0 <1.1.0' if required same minor version
+    collection_change_notifier: ^1.0.0+1 # Or ''>=1.0.0 <1.1.0' if required same minor version
 ```
 
 * From Git (For unstable release)
@@ -71,6 +71,11 @@ mscnis.modify("one", (item) {
     // item!.state = 2; // (Not recommeded which make more complicated for error hadling)
 })
 ```
+
+## Limitations
+
+It only implemented based on the class method which there is no ovridden method for extensions.
+Extensions method tend to be invoked multiple time of `notifyListeners` that causing build error throw.
 
 ## License
 

@@ -13,8 +13,8 @@ library collection_change_notifier;
 import 'src/abstract.dart' show CollectionChangeNotifierMixin;
 import 'package:flutter/widgets.dart';
 
-export 'src/list/list.dart';
-export 'src/map/map.dart';
-export 'src/set/set.dart';
+export 'src/list.dart';
+export 'src/map.dart';
+export 'src/set.dart';
 
 export 'src/abstract.dart' show CollectionChangeNotifierMixin;

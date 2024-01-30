@@ -24,6 +24,7 @@ class SetControllerPage extends StatelessWidget {
             itemBuilder: (context, index) => ListTile(
                 title: Text("Set context: ${lcnsn.elementAt(index)}"),
                 onTap: () {
+                  // Make a duplicate one instead of editing value
                   lcnsn.add(lcnsn.elementAt(index));
                 },
                 onLongPress: () {
@@ -38,7 +39,8 @@ class SetControllerPage extends StatelessWidget {
 ChangeNotifierProvider<SetChangeNotifier<int>> get cnp =>
     ChangeNotifierProvider(
         create: (context) => SetChangeNotifier<int>(),
-        builder: (context, child) => MaterialApp(home: SetControllerPage()));
+        builder: (context, child) =>
+            const MaterialApp(home: SetControllerPage()));
 
 void main() {
   group("Set change notifier test", () {
