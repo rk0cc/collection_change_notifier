@@ -41,7 +41,7 @@ class ListControllerPage extends StatelessWidget {
 ChangeNotifierProvider<ListChangeNotifier<StringNode>> get cnp =>
     ChangeNotifierProvider(
         create: (context) => ListChangeNotifier<StringNode>(),
-        builder: (context, child) => MaterialApp(home: ListControllerPage()));
+        builder: (context, child) => const MaterialApp(home: ListControllerPage()));
 
 void main() {
   group("List change notifier test", () {

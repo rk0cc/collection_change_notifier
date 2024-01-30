@@ -4,18 +4,17 @@
 
   Grouping them into the list is for easier manage.
 */
-
 import 'dart:collection';
 
 import 'package:flutter/widgets.dart' show ChangeNotifier;
 
-import '../abstract.dart';
+import 'abstract.dart';
 
 part 'linked_list.dart';
 part 'queue.dart';
 
 /// Implemented [ChangeNotifier] feature into [List].
-class ListChangeNotifier<E> extends ListBase<E>
+final class ListChangeNotifier<E> extends ListBase<E>
     with
         ChangeNotifier,
         CollectionChangeNotifierMixin<E, int, E>,
