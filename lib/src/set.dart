@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart' show ChangeNotifier;
 
 import 'abstract.dart';
 
+/// [Set] base implementation with [ChangeNotifier] features.
 abstract final class SetChangeNotifier<E> extends SetBase<E>
     with
         ChangeNotifier,

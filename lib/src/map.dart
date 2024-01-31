@@ -4,9 +4,9 @@ import 'package:flutter/widgets.dart' show ChangeNotifier;
 
 import 'abstract.dart';
 
-/// A mixin to standarize [Map] features with [ChangeNotifier] when state
+/// Standarize [Map] features with [ChangeNotifier] when state
 /// changed.
-final class MapChangeNotifier<K, V> extends MapBase<K, V>
+abstract final class MapChangeNotifier<K, V> extends MapBase<K, V>
     with ChangeNotifier, CollectionChangeNotifierMixin<MapEntry<K, V>, K, V?> {
   /// The map of the implemented object.
   ///

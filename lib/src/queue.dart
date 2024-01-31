@@ -1,5 +1,7 @@
 part of 'list.dart';
 
+/// [Queue] base collection with [ChangeNotifier] features
+/// intergrated.
 abstract final class QueueChangeNotifier<E> extends Iterable<E>
     with
         ChangeNotifier,
