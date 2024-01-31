@@ -29,6 +29,7 @@ mixin CollectionChangeNotifierMixin<I, IDX, E> on ChangeNotifier {
   ///
   /// [MapChangeNotifier] will be returned an [Iterable] of [MapEntry] which
   /// repersent a key-value pair.
+  @protected
   Iterable<I> get iterableForm;
 
   /// Modify [E]'s properties from [index] inside of
