@@ -21,18 +21,34 @@ final class ListChangeNotifier<E> extends ListBase<E>
         IterableCollectionChangeNotifieMixin<E> {
   final List<E> _list;
 
-  ListChangeNotifier._new(this._list);
+  ListChangeNotifier._(this._list);
 
   /// Construct a new [ListChangeNotifier] with empty.
-  ListChangeNotifier() : _list = [];
+  factory ListChangeNotifier() => ListChangeNotifier._([]);
 
   /// Construct a new [ListChangeNotifier] from existed [elements].
   factory ListChangeNotifier.from(Iterable elements) =>
-      ListChangeNotifier._new(List.from(elements, growable: true));
+      ListChangeNotifier._(List.from(elements, growable: true));
 
   /// Construct [ListChangeNotifier] with given [elements].
   factory ListChangeNotifier.of(Iterable<E> elements) =>
-      ListChangeNotifier._new(List.of(elements, growable: true));
+      ListChangeNotifier._(List.of(elements, growable: true));
+
+  /// Apply new [value] to first element of [ListChangeNotifier]
+  /// and invoke [notifyListeners] if assigned.
+  @override
+  set first(E value) {
+    _list.first = value;
+    notifyListeners();
+  }
+
+  /// Apply new [value] to last element of [ListChangeNotifier]
+  /// and invoke [notifyListeners] if assigned.
+  @override
+  set last(E value) {
+    _list.last = value;
+    notifyListeners();
+  }
 
   /// Set a new [length] of [ListChangeNotifier].
   ///
