@@ -1,3 +1,9 @@
+## 2.0.1
+
+* Mark `iterableForm` getter `@protected`.
+* Add `notifyListeners` when `first` and `last` setter called in `ListChangeNotifier`.
+* Add missing documentations.
+
 ## 2.0.0
 
 * Upgrade to Dart 3 with new syntax applied.
