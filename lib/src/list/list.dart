@@ -45,6 +45,22 @@ class ListChangeNotifier<E> extends ListBase<E>
     notifyListeners();
   }
 
+  /// Apply new [value] to first element of [ListChangeNotifier]
+  /// and invoke [notifyListeners] if assigned.
+  @override
+  set first(E value) {
+    _list.first = value;
+    notifyListeners();
+  }
+
+  /// Apply new [value] to last element of [ListChangeNotifier]
+  /// and invoke [notifyListeners] if assigned.
+  @override
+  set last(E value) {
+    _list.last = value;
+    notifyListeners();
+  }
+
   /// Get how many items assigned into this list.
   @override
   int get length => _list.length;
