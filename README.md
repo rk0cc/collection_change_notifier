@@ -1,8 +1,7 @@
-# Binding Dart collection model to ChangeNotifier in Flutter [![Flutter package test](https://github.com/rk0cc/collection_change_notifier/actions/workflows/flutter_action.yml/badge.svg?branch=main)](https://github.com/rk0cc/collection_change_notifier/actions/workflows/flutter_action.yml)
+# Binding Dart collection model to ChangeNotifier in Flutter
 
-<p align="center">
-    <a href="https://pub.dev/packages/collection_change_notifier"><img alt="Pub Version (including pre-releases)" src="https://img.shields.io/pub/v/collection_change_notifier?include_prereleases&style=for-the-badge"/></a>
-</p>
+> [!WARNING]
+> This branch is designed for retaining Dart 2 supports for production only. Upgrade to Dart 3 and apply `2.0.0` or above is preferred.
 
 This package implemented Dart's collection object with ChangeNotifier that it updated when collection item changed.
 
@@ -20,20 +19,12 @@ It similar how `BindingList` worked in .NET.
 
 #### Edit pubspec.yaml:
 
-* From pub.dev
-
 ```yaml
 dependencies:
-    collection_change_notifier: ^1.0.0+1 # Or ''>=1.0.0 <1.1.0' if required same minor version
-```
-
-* From Git (For unstable release)
-
-```yaml
-dependencies:
-    git:
-        url: https://github.com/rk0cc/collection_change_notifier.git
-        ref: (Commit hash, branches or tags name)
+    collection_change_notifier:
+        git:
+            url: https://github.com/rk0cc/collection_change_notifier.git
+            ref: legacy
 ```
 
 ## Usage

@@ -1,3 +1,10 @@
+## 1.0.1
+
+This package is *de facto* version of retaining Dart 2 release only. And it no longer publish to `pub.dev`.
+
+* Same changelogs done in [`2.0.1`](https://github.com/rk0cc/collection_change_notifier/releases/tag/2.0.1)
+* Change SDK constraint to prevent Dart 3 retrives.
+
 ## 1.0.0+1
 
 * Implement `sort` for `ListChangeNotifier`
