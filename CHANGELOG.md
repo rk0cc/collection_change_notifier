@@ -1,3 +1,7 @@
+## 2.0.2
+
+* Unified factory implementations for `QueueChangeNotifier`'s child classes.
+
 ## 2.0.1
 
 * Mark `iterableForm` getter `@protected`.

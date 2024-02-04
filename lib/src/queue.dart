@@ -29,13 +29,9 @@ abstract final class QueueChangeNotifier<E> extends Iterable<E>
     notifyListeners();
   }
 
-  void _slientAddAll(Iterable<E> iterable) {
-    _q.addAll(iterable);
-  }
-
   @override
   void addAll(Iterable<E> iterable) {
-    _slientAddAll(iterable);
+    _q.addAll(iterable);
     notifyListeners();
   }
 
@@ -113,47 +109,39 @@ abstract final class QueueChangeNotifier<E> extends Iterable<E>
 final class ListQueueChangeNotifier<E> extends QueueChangeNotifier<E> {
   /// Create new [ListQueueChangeNotifier] with given [initialCapacity] for
   /// prepare at leasst elements in this queue.
-  ListQueueChangeNotifier([int? initialCapacity])
-      : super._(ListQueue(initialCapacity));
+  ListQueueChangeNotifier._(ListQueue<E> queue) : super._(queue);
+
+  factory ListQueueChangeNotifier([int? initialCapacity]) =>
+      ListQueueChangeNotifier._(ListQueue(initialCapacity));
 
   /// Create [ListQueueChangeNotifier] contains all [elements].
   ///
   /// It just call [ListQueue.from] with [elements], then call
   /// [ListQueueChangeNotifier.new] with given [ListQueue.length] as initial
   /// capacity and assign [elements].
-  factory ListQueueChangeNotifier.from(Iterable elements) {
-    ListQueue<E> lq = ListQueue.from(elements);
-    ListQueueChangeNotifier<E> lqcn = ListQueueChangeNotifier(lq.length);
-
-    for (final element in lq) {
-      lqcn.addLast(element);
-    }
-
-    return lqcn;
-  }
+  factory ListQueueChangeNotifier.from(Iterable elements) =>
+      ListQueueChangeNotifier._(ListQueue.from(elements));
 
   /// Create new [ListQueueChangeNotifier] with given [elements].
   factory ListQueueChangeNotifier.of(Iterable<E> elements) =>
-      ListQueueChangeNotifier().._slientAddAll(elements);
+      ListQueueChangeNotifier._(ListQueue.of(elements));
 }
 
 /// Implemented [QueueChangeNotifier] baased on [DoubleLinkedQueue].
 final class DoubleLinkedQueueChangeNotifier<E> extends QueueChangeNotifier<E> {
-  DoubleLinkedQueueChangeNotifier() : super._(DoubleLinkedQueue());
+  DoubleLinkedQueueChangeNotifier._(DoubleLinkedQueue<E> queue)
+      : super._(queue);
+
+  factory DoubleLinkedQueueChangeNotifier() =>
+      DoubleLinkedQueueChangeNotifier._(DoubleLinkedQueue());
 
   /// Create new [DoubleLinkedQueueChangeNotifier] and add all [elements]
   /// of [Iterable] into the last of the queue.
-  factory DoubleLinkedQueueChangeNotifier.from(Iterable elements) {
-    DoubleLinkedQueueChangeNotifier<E> dlq = DoubleLinkedQueueChangeNotifier();
-    for (final e in elements) {
-      dlq.addLast(e as E);
-    }
-
-    return dlq;
-  }
+  factory DoubleLinkedQueueChangeNotifier.from(Iterable elements) =>
+      DoubleLinkedQueueChangeNotifier._(DoubleLinkedQueue.from(elements));
 
   /// Create new [DoubleLinkedQueueChangeNotifier] and apply [elements]
   /// of [Iterable] to the list.
   factory DoubleLinkedQueueChangeNotifier.of(Iterable<E> elements) =>
-      DoubleLinkedQueueChangeNotifier().._slientAddAll(elements);
+      DoubleLinkedQueueChangeNotifier._(DoubleLinkedQueue.of(elements));
 }
