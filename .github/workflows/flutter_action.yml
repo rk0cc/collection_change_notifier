@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Initalize Flutter
-        uses: subosito/flutter-action@v2.12.0
+        uses: subosito/flutter-action@v2.15.0
         with:
           channel: ${{ matrix.channel }}
       - name: Get dependencies
